@@ -6,6 +6,7 @@ import {
 
 const Banner = () => {
   const sliderRef = useRef();
+  const sliderRefPhone = useRef();
   const handleScroll = (dir) => {
     if (dir === "left") {
       sliderRef.current.scrollTo({
@@ -19,30 +20,70 @@ const Banner = () => {
       });
     }
   };
+  const handleScrollPhone = (dir) => {
+    if (dir === "left") {
+      sliderRefPhone.current.scrollTo({
+        left:
+          sliderRefPhone.current.scrollLeft -
+          sliderRefPhone.current.offsetWidth,
+        behavior: "smooth",
+      });
+    } else {
+      sliderRefPhone.current.scrollTo({
+        left:
+          sliderRefPhone.current.scrollLeft +
+          sliderRefPhone.current.offsetWidth,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <>
-      <div className="flex h-[320px] w-full snap-x overflow-y-hidden md:hidden">
-        {[
-          "banner3s.webp",
-          "banner1s.webp",
-          "banner2s.webp",
-          "banner4s.webp",
-        ].map((banner, index) => {
-          return (
-            <div
-              key={index}
-              className="h-full w-full flex-shrink-0 snap-center overflow-hidden"
-            >
-              <img
-                src={`/banners/${banner}`}
-                className="h-full w-full object-cover"
-                alt="banner"
-              />
-            </div>
-          );
-        })}
+      <div className="relative">
+        <div
+          ref={sliderRefPhone}
+          className="flex h-[400px] w-full snap-x overflow-hidden md:hidden"
+        >
+          <div
+            onClick={() => {
+              handleScrollPhone("left");
+            }}
+            className="absolute left-2 top-[40%] z-10 flex cursor-pointer items-center justify-center text-5xl"
+          >
+            <MdOutlineKeyboardArrowLeft />
+          </div>
+          <div
+            onClick={() => {
+              handleScrollPhone("right");
+            }}
+            className="absolute right-2 top-[40%] z-10 flex cursor-pointer items-center justify-center text-5xl"
+          >
+            <MdOutlineKeyboardArrowRight />
+          </div>
+          {[
+            "banner3s.webp",
+            "banner1s.webp",
+            "banner2s.webp",
+            "banner4s.webp",
+          ].map((banner, index) => {
+            return (
+              <div
+                key={index}
+                className="h-full w-full flex-shrink-0 snap-center overflow-hidden"
+              >
+                <img
+                  src={`/banners/${banner}`}
+                  className="h-full w-full object-cover"
+                  alt="banner"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
+
+      {/* destop */}
       <div className="relative">
         <div
           ref={sliderRef}
@@ -69,7 +110,7 @@ const Banner = () => {
               return (
                 <div
                   key={index}
-                  className="h-full w-full flex-shrink-0 snap-start overflow-hidden"
+                  className="h-full w-full flex-shrink-0 snap-center overflow-hidden"
                 >
                   <img
                     src={`/banners/${banner}`}
