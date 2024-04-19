@@ -24,15 +24,15 @@ const Banner = () => {
     <>
       <div className="flex h-[320px] w-full snap-x overflow-y-hidden md:hidden">
         {[
+          "banner3s.webp",
           "banner1s.webp",
           "banner2s.webp",
-          "banner3s.webp",
           "banner4s.webp",
         ].map((banner, index) => {
           return (
             <div
               key={index}
-              className="h-full w-full flex-shrink-0 snap-start overflow-hidden"
+              className="h-full w-full flex-shrink-0 snap-center overflow-hidden"
             >
               <img
                 src={`/banners/${banner}`}
