@@ -49,7 +49,7 @@ const Banner = () => {
             onClick={() => {
               handleScrollPhone("left");
             }}
-            className="absolute left-2 top-[40%] z-10 flex cursor-pointer items-center justify-center text-5xl"
+            className="absolute left-2 top-[40%]  flex cursor-pointer items-center justify-center text-5xl"
           >
             <MdOutlineKeyboardArrowLeft />
           </div>
@@ -57,7 +57,7 @@ const Banner = () => {
             onClick={() => {
               handleScrollPhone("right");
             }}
-            className="absolute right-2 top-[40%] z-10 flex cursor-pointer items-center justify-center text-5xl"
+            className="absolute right-2 top-[40%]  flex cursor-pointer items-center justify-center text-5xl"
           >
             <MdOutlineKeyboardArrowRight />
           </div>
@@ -93,7 +93,7 @@ const Banner = () => {
             onClick={() => {
               handleScroll("left");
             }}
-            className="absolute left-2 top-[40%] z-10 flex cursor-pointer items-center justify-center text-5xl"
+            className="absolute left-2 top-[40%]  flex cursor-pointer items-center justify-center text-5xl"
           >
             <MdOutlineKeyboardArrowLeft />
           </div>
@@ -101,7 +101,7 @@ const Banner = () => {
             onClick={() => {
               handleScroll("right");
             }}
-            className="absolute right-2 top-[40%] z-10 flex cursor-pointer items-center justify-center text-5xl"
+            className="absolute right-2 top-[40%]  flex cursor-pointer items-center justify-center text-5xl"
           >
             <MdOutlineKeyboardArrowRight />
           </div>
