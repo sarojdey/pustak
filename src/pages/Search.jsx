@@ -1,7 +1,32 @@
-import React from "react";
+import Card from "../components/Card";
+import useFetch from "../hooks/useFetch";
+import Loader from "../components/Loader";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const Search = () => {
-  return <div>Search</div>;
+  const { query } = useParams();
+  const navigate = useNavigate();
+  const { data, loading } = useFetch(`/book/search/${query}`);
+
+  return loading ? (
+    <div className="flex items-center justify-center">
+      <Loader />
+    </div>
+  ) : (
+    <div className=" w-full">
+      <div className="mt-20 flex items-center justify-center md:mb-10">
+        <span className="font-font1 text-4xl font-extrabold text-gray-800">
+          SEARCH RESULTS
+        </span>
+      </div>
+      <div className="no-scrollbar mb-5 flex overflow-x-auto pb-2 md:ml-12 md:gap-14">
+        {data?.map((book) => {
+          return <Card key={book.id} book={book} />;
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Search;
