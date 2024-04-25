@@ -1,13 +1,15 @@
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
   const handleChange = (event) => {
     setQuery(event.target.value);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    navigate(`/search/${query}`);
   };
   return (
     <form

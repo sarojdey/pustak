@@ -1,14 +1,31 @@
 import { CiHeart } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ book }) => {
+  const navigate = useNavigate();
+
   const discount = (perc, price) => {
     const newPrice = price - (price * perc) / 100;
     return Math.floor(newPrice);
   };
 
+  const navigationHandler = (book) => {
+    // console.log("navigationHandler is being called.");
+    navigate(`/details/${book.id}`, {
+      state: {
+        bookInfo: book,
+      },
+    });
+  };
+
   return (
-    <div className="flex w-[12rem] scale-75 flex-col items-center md:scale-100 ">
-      <div className="my-3 h-[17rem] w-11/12 cursor-pointer overflow-hidden rounded-sm transition duration-150 ease-in-out hover:scale-105">
+    <div className="flex w-[12rem] flex-shrink-0 scale-75 flex-col items-center text-nowrap md:scale-100 ">
+      <div
+        onClick={() => {
+          navigationHandler(book);
+        }}
+        className="my-3 h-[17rem] w-11/12 cursor-pointer overflow-hidden rounded-sm transition duration-150 ease-in-out hover:scale-105"
+      >
         <img
           className="h-full w-full object-cover"
           src="cover.webp"
@@ -16,14 +33,16 @@ const Card = () => {
         />
       </div>
       <span className=" mb-1 mt-3 w-11/12 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-center font-font1 text-sm font-medium transition duration-150 ease-in-out hover:scale-105 hover:text-gray-800 ">
-        {"Before We Forget Kindness"}
+        {book?.title}
       </span>
       <span className=" w-11/12 overflow-hidden text-ellipsis text-nowrap text-center font-font1 text-xs font-medium text-blue-800">
-        {"Saroj Kumar Dey"}
+        {book?.author}
       </span>
       <div className="my-3 flex w-11/12 justify-center font-font1 font-medium">
-        <span className=" ">₹ {discount(10, 599)}</span>
-        <span className=" pl-2 text-gray-500 line-through">₹ {599}</span>
+        <span className=" ">₹ {discount(10, book?.price)}</span>
+        <span className=" pl-2 text-gray-500 line-through">
+          ₹ {book?.price}
+        </span>
         <span className=" pl-1 text-green-700">({10}%)</span>
       </div>
       <div className="flex w-11/12 justify-evenly">

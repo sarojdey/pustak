@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaBook } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
@@ -7,6 +9,23 @@ import { IoMenu } from "react-icons/io5";
 import Search from "./Search";
 
 const Navbar = () => {
+  const { wishList } = useSelector((state) => state.wish);
+  const { cart } = useSelector((state) => state.cart);
+
+  const navigate = useNavigate();
+
+  const navigationHandler = (type) => {
+    if (type === "wishlist") {
+      navigate("/wishlist");
+    } else if (type === "cart") {
+      navigate("/cart");
+    } else if (type === "logo") {
+      navigate("/");
+    } else {
+      navigate("/user");
+    }
+  };
+
   return (
     <div className=" fixed z-10 flex w-full flex-col text-sm md:text-base ">
       <div className="hidden h-8 items-center justify-end bg-black text-xs text-white shadow-sm md:flex ">
@@ -29,7 +48,12 @@ const Navbar = () => {
             <div className="ml-2 cursor-pointer text-3xl hover:text-zinc-800 md:hidden">
               <IoMenu />
             </div>
-            <div className="ml-4 flex cursor-pointer items-center text-2xl hover:text-zinc-800 md:text-4xl">
+            <div
+              onClick={() => {
+                navigationHandler("logo");
+              }}
+              className="ml-4 flex cursor-pointer items-center text-2xl hover:text-zinc-800 md:text-4xl"
+            >
               <FaBook />
               <span className="ml-1 font-font1 font-bold">PUSTAK</span>
             </div>
@@ -39,13 +63,28 @@ const Navbar = () => {
           </div>
           <div>
             <ul className=" mr-1 flex w-24 justify-around text-xl md:mr-4 md:w-40 md:text-2xl">
-              <li className="cursor-pointer hover:text-zinc-800">
+              <li
+                onClick={() => {
+                  navigationHandler("user");
+                }}
+                className="cursor-pointer hover:text-zinc-800"
+              >
                 <FaUser />
               </li>
-              <li className="cursor-pointer hover:text-zinc-800">
+              <li
+                onClick={() => {
+                  navigationHandler("wishlist");
+                }}
+                className="cursor-pointer hover:text-zinc-800"
+              >
                 <FaHeart />
               </li>
-              <li className="cursor-pointer hover:text-zinc-800">
+              <li
+                onClick={() => {
+                  navigationHandler("cart");
+                }}
+                className="cursor-pointer hover:text-zinc-800"
+              >
                 <FaShoppingBag />
               </li>
             </ul>
@@ -66,7 +105,13 @@ const Navbar = () => {
             "SCI-FI",
           ].map((i, index) => {
             return (
-              <li key={index} className="cursor-pointer hover:text-zinc-800">
+              <li
+                key={index}
+                onClick={() => {
+                  navigate(`/search/${i}`);
+                }}
+                className="cursor-pointer hover:text-zinc-800"
+              >
                 {i}
               </li>
             );
