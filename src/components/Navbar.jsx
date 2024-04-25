@@ -77,7 +77,12 @@ const Navbar = () => {
                 }}
                 className="cursor-pointer hover:text-zinc-800"
               >
-                <FaHeart />
+                <div className="relative">
+                  <FaHeart />
+                  <span className="absolute -right-1 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white">
+                    {wishList.length}
+                  </span>
+                </div>
               </li>
               <li
                 onClick={() => {
@@ -85,7 +90,12 @@ const Navbar = () => {
                 }}
                 className="cursor-pointer hover:text-zinc-800"
               >
-                <FaShoppingBag />
+                <div className="relative">
+                  <FaShoppingBag />
+                  <span className="absolute -right-1 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white">
+                    {cart.length}
+                  </span>
+                </div>
               </li>
             </ul>
           </div>

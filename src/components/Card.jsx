@@ -1,7 +1,11 @@
 import { CiHeart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { getWishList } from "../store/wishSlice";
+import { useDispatch } from "react-redux";
+import { getCart } from "../store/cartSlice";
 
 const Card = ({ book }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const discount = (perc, price) => {
@@ -46,10 +50,30 @@ const Card = ({ book }) => {
         <span className=" pl-1 text-green-700">({10}%)</span>
       </div>
       <div className="flex w-11/12 justify-evenly">
-        <div className="cursor-pointer rounded-md border-[1px]  border-black px-4 py-2 text-xs transition duration-200 ease-in-out hover:border-blue-500 hover:text-blue-500  ">
+        <div
+          onClick={() => {
+            dispatch(
+              getCart({
+                bookInfo: book,
+                quantity: 1,
+              }),
+            );
+          }}
+          className="cursor-pointer rounded-md border-[1px]  border-black px-4 py-2 text-xs transition duration-200 ease-in-out hover:border-blue-500 hover:text-blue-500  "
+        >
           ADD TO BAG
         </div>
-        <div className="flex items-center justify-center text-3xl">
+        <div
+          onClick={() => {
+            dispatch(
+              getWishList({
+                bookInfo: book,
+                quantity: 1,
+              }),
+            );
+          }}
+          className="flex items-center justify-center text-3xl"
+        >
           <CiHeart className="hover:text-pink-600" />
         </div>
       </div>

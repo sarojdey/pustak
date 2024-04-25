@@ -13,12 +13,7 @@ const Details = () => {
   const dispatch = useDispatch();
 
   const wishListHandler = (book) => {
-    console.log("wishlist clicked");
     const wishcount = counter;
-    console.log({
-      bookInfo: book,
-      quantity: wishcount,
-    });
     dispatch(
       getWishList({
         bookInfo: book,
