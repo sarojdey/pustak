@@ -38,7 +38,11 @@ function WishList() {
                 key={book.id}
               >
                 <div className="flex w-1/3 items-center justify-center">
-                  <img src={"/cover.webp"} className="h-[95%]" alt="book" />
+                  <img
+                    src={`https://pustak-api.onrender.com/${book?.path}/${book?.id}.jpeg`}
+                    className="h-[95%]"
+                    alt="book"
+                  />
                 </div>
                 <div className="flex w-1/2 flex-col overflow-y-scroll">
                   <span className=" p-4 text-lg font-semibold">

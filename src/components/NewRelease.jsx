@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import Loader from "./Loader";
 
 const NewRelease = () => {
-  const { data, loading } = useFetch(`/book`);
+  const { data, loading } = useFetch(`/book/search/fiction`);
 
   return loading ? (
     <div className="flex items-center justify-center">

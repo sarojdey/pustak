@@ -32,7 +32,7 @@ const Card = ({ book }) => {
       >
         <img
           className="h-full w-full object-cover"
-          src="cover.webp"
+          src={`https://pustak-api.onrender.com/${book?.path}/${book?.id}.jpeg`}
           alt="cover"
         />
       </div>

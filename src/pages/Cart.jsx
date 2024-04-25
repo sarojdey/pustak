@@ -27,7 +27,11 @@ function Cart() {
                 key={product.id}
               >
                 <div className="flex w-[30%] items-center justify-center">
-                  <img src={"/cover.webp"} className="h-[95%]" alt="product" />
+                  <img
+                    src={`https://pustak-api.onrender.com/${product?.path}/${product?.id}.jpeg`}
+                    className="h-[95%]"
+                    alt="product"
+                  />
                 </div>
                 <div className="flex w-1/2 flex-col overflow-y-scroll">
                   <span className="p-4 text-lg font-semibold ">

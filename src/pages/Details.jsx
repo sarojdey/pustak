@@ -61,7 +61,7 @@ const Details = () => {
         <div className="mx-auto h-3/4 w-11/12 pt-[50px] md:flex">
           <div className="flex h-[400px] w-auto justify-center">
             <img
-              src={"/cover.webp"}
+              src={`https://pustak-api.onrender.com/${book?.path}/${book?.id}.jpeg`}
               className="h-[400px] w-auto flex-shrink-0"
               alt="cover"
             />

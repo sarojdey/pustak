@@ -6,9 +6,22 @@ import { FaUser } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import Search from "./Search";
+import Menu from "./Menu";
+import { useState } from "react";
+
+const navLinks = [
+  "FICTION",
+  "NON-FICTION",
+  "NOVEL",
+  "ROMANCE",
+  "PHILOSOPHY",
+  "SCI-FI",
+];
 
 const Navbar = () => {
+  const [showMenu, setShowMenu] = useState(false);
   const { wishList } = useSelector((state) => state.wish);
   const { cart } = useSelector((state) => state.cart);
 
@@ -25,6 +38,10 @@ const Navbar = () => {
       navigate("/user");
     }
   };
+
+  function toggleMenu() {
+    setShowMenu(!showMenu);
+  }
 
   return (
     <div className=" fixed z-10 flex w-full flex-col text-sm md:text-base ">
@@ -46,7 +63,19 @@ const Navbar = () => {
         <div className="flex h-16 items-center  justify-between md:h-24">
           <div className="flex items-center justify-center">
             <div className="ml-2 cursor-pointer text-3xl hover:text-zinc-800 md:hidden">
-              <IoMenu />
+              {showMenu ? (
+                <IoClose
+                  onClick={toggleMenu}
+                  size={30}
+                  className="cursor-pointer transition-all"
+                />
+              ) : (
+                <IoMenu
+                  onClick={toggleMenu}
+                  size={30}
+                  className="cursor-pointer transition-all"
+                />
+              )}
             </div>
             <div
               onClick={() => {
@@ -79,7 +108,9 @@ const Navbar = () => {
               >
                 <div className="relative">
                   <FaHeart />
-                  <span className="absolute -right-1 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white">
+                  <span
+                    className={`${wishList.length <= 0 && "hidden"} absolute -right-1 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white`}
+                  >
                     {wishList.length}
                   </span>
                 </div>
@@ -92,7 +123,9 @@ const Navbar = () => {
               >
                 <div className="relative">
                   <FaShoppingBag />
-                  <span className="absolute -right-1 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white">
+                  <span
+                    className={`${cart.length <= 0 && "hidden"} absolute -right-1 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-semibold text-white`}
+                  >
                     {cart.length}
                   </span>
                 </div>
@@ -106,14 +139,7 @@ const Navbar = () => {
       </div>
       <div className="hidden h-14 items-center bg-white font-font1 text-sm font-semibold text-gray-600 shadow-sm md:flex ">
         <ul className="flex w-full justify-around">
-          {[
-            "FICTION",
-            "NON-FICTION",
-            "NOVEL",
-            "ROMANCE",
-            "PHILOSOPHY",
-            "SCI-FI",
-          ].map((i, index) => {
+          {navLinks.map((i, index) => {
             return (
               <li
                 key={index}
@@ -128,6 +154,7 @@ const Navbar = () => {
           })}
         </ul>
       </div>
+      <Menu showMenu={showMenu} setShowMenu={setShowMenu} navLinks={navLinks} />
     </div>
   );
 };
