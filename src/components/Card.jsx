@@ -36,7 +36,12 @@ const Card = ({ book }) => {
           alt="cover"
         />
       </div>
-      <span className=" mb-1 mt-3 w-11/12 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-center font-font1 text-sm font-medium transition duration-150 ease-in-out hover:scale-105 hover:text-gray-800 ">
+      <span
+        onClick={() => {
+          navigationHandler(book);
+        }}
+        className=" mb-1 mt-3 w-11/12 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-center font-font1 text-sm font-medium transition duration-150 ease-in-out hover:scale-105 hover:text-gray-800 "
+      >
         {book?.title}
       </span>
       <span className=" w-11/12 overflow-hidden text-ellipsis text-nowrap text-center font-font1 text-xs font-medium text-blue-800">

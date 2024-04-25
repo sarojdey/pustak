@@ -18,7 +18,7 @@ function Cart() {
   };
   return cartLength > 0 ? (
     <>
-      <div className=" mx-auto mb-8  mt-10 h-auto min-h-[400px] w-[90%]">
+      <div className="mx-auto mb-8  mt-10 h-auto min-h-screen w-[90%]">
         <div className="flex h-full w-full flex-col">
           {cart.map((product, index) => {
             return (
@@ -38,7 +38,7 @@ function Cart() {
                     Quantity: {product.quantity}
                   </span>
                 </div>
-                <div className="flex w-1/2 flex-col items-center justify-evenly bg-gray-950 text-3xl md:flex-row">
+                <div className="flex w-1/5 flex-col items-center justify-evenly bg-gray-950 text-3xl md:flex-row">
                   <div className="flex h-12 w-12 items-center justify-center rounded bg-yellow-500 text-slate-900 transition-all ease-in hover:bg-yellow-300">
                     <MdOutlinePayment />
                   </div>

@@ -1,6 +1,7 @@
 import Card from "./Card";
 import useFetch from "../hooks/useFetch";
 import { useEffect } from "react";
+import Loader from "./Loader";
 export const Popular = () => {
   const { data, loading } = useFetch(`/book`);
 
@@ -9,7 +10,9 @@ export const Popular = () => {
   }, [data]);
 
   return loading ? (
-    <div>loading</div>
+    <div className="flex items-center justify-center">
+      <Loader />
+    </div>
   ) : (
     <div className=" w-full">
       <div className="mt-20 flex items-center justify-center md:mb-10">
