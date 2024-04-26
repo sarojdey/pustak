@@ -6,7 +6,7 @@ function Menu({ showMenu, navLinks, setShowMenu }) {
     <div
       className={`${
         showMenu ? "left-[40%]" : "left-full "
-      }  fixed top-0 z-50 h-screen w-[75%] flex-col justify-between  bg-white px-8 pt-6 font-semibold text-white shadow-md transition-all duration-300 md:hidden dark:bg-gray-900`}
+      }  fixed top-0 z-50 h-screen w-[75%] flex-col justify-between  bg-gray-800 px-8 pt-6 font-semibold text-white shadow-md transition-all duration-300 md:hidden dark:bg-gray-900`}
     >
       <div className="card">
         <nav>
