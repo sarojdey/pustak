@@ -3,11 +3,11 @@ import { MdDeleteForever } from "react-icons/md";
 import { MdOutlinePayment } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { removeCart } from "../store/cartSlice";
+import StripeCheckout from "react-stripe-checkout";
 
 function Cart() {
   const [cartLength, setCartLength] = useState(0);
   const { cart, subtotal } = useSelector((state) => state.cart);
-
   useEffect(() => {
     setCartLength(cart.length);
   }, [cart]);
@@ -16,6 +16,11 @@ function Cart() {
   const removeHandler = (i) => {
     dispatch(removeCart(i));
   };
+
+  // function handleCheckout() {
+  //   setPayNow(true);
+  //   console.log(payNow);
+  // }
   return cartLength > 0 ? (
     <>
       <div className="mx-auto mb-8  mt-10 h-auto min-h-screen w-[90%]">
@@ -60,6 +65,7 @@ function Cart() {
           })}
         </div>
       </div>
+
       <div className="flex h-16 w-full items-center justify-between bg-gray-950 text-white">
         <span className="ml-6 text-lg font-semibold">
           Sub-Total: ₹{subtotal}
